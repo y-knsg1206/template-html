@@ -1,0 +1,91 @@
+@use "sass:math";
+@use "./breakpoints" as *;
+
+////////////////////
+// インナー幅と余白設定
+////////////////////
+:root {
+  --inner-value: 1200;
+  --inner: 1200px;
+  --padding-pc: 25px;
+  --padding-sp: 20px;
+}
+
+////////////////////
+// 計算式
+////////////////////
+:root {
+  --rem: 1rem / 16;
+  --em: 1em / 16;
+  --vw: 1440 * 100vw;
+  --inner-percent: var(--inner-value) * 100%;
+
+  @include mq(md) {
+    --vw: 375 * 100vw;
+  }
+}
+
+////////////////////
+// フォント設定
+////////////////////
+:root {
+  --base-font: "Noto Sans JP", sans-serif;
+  --en-font: "Poppins", sans-serif;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --fw-black: 900;
+}
+
+////////////////////
+// 色の指定
+////////////////////
+:root {
+  --black: #000;
+  --white: #fff;
+}
+
+////////////////////
+// z-indexの指定
+////////////////////
+:root {
+  --z-index-loader: 200;
+  --z-index-header: 100;
+}
+
+////////////////////
+// グローバルスタイル
+////////////////////
+:root {
+  --header-height: calc(110/16*1rem);
+  --scrollbar-width: 0;
+
+  @include mq(md) {
+    --header-height: calc(65/16*1rem);
+  }
+}
+
+@property --scrollbar {
+  syntax: "<length>";
+  initial-value: 0;
+  inherits: true;
+}
+
+:root:has(:modal[open], .is-scroll-lock, .loader) {
+  overflow: hidden;
+}
+
+html {
+  scroll-padding-top: var(--header-height);
+}
+
+body {
+  container-type: inline-size;
+  background-color: var(--white);
+  font-family: var(--base-font);
+  color: var(--black);
+  font-weight: var(--fw-medium);
+}

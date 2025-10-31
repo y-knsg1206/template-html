@@ -1,0 +1,44 @@
+@use "../global" as *;
+
+@if $startFrom ==sp {
+
+  //スマホファースト
+  html {
+    font-size: 16px;
+
+    //~375px
+    @media (max-width: 375px) {
+      font-size: calc(16/375*100vw);
+    }
+
+    @include mq(md) {
+      font-size: calc(16/var(--inner-value)*100vw);
+    }
+
+    //inner~max-screen
+    @media (min-width: 1200px) {
+      font-size: 16px;
+    }
+  }
+}
+
+@else {
+
+  //PCファースト
+  html {
+    font-size: 16px;
+
+    @media (max-width: 1200px) {
+      font-size: calc(16/var(--inner-value)*100vw);
+    }
+
+    @include mq(md) {
+      font-size: 16px;
+    }
+
+    //~375px
+    @media (max-width: 375px) {
+      font-size: calc(16/375*100vw);
+    }
+  }
+}
